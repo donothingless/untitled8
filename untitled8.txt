@@ -1,0 +1,25 @@
+
+public partial class calendar : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+    }
+    protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
+    {
+        if (e.Day.IsWeekend || e.Day.Date.Year > 2022)
+        {
+            e.Day.IsSelectable = false;
+        }
+        DateTime dt = Calendar1.SelectedDate;
+        Label2.Text = "Selected Date:" + dt.ToLongDateString();
+        if ((e.Day.Date.Day == 13) && (e.Day.Date.Month == 8))
+        {
+            e.Cell.BackColor = System.Drawing.Color.Green;
+            Label label = new Label();
+            label.Text = "<br/>My Birthday";
+            e.Cell.Controls.Add(label);
+        }
+    }
+}
+
+
